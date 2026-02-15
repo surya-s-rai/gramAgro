@@ -9,6 +9,24 @@ const API_KEY = "579b464db66ec23bdd0000014e7637c27261454244f98a4c22765395";
 // Serve HTML, CSS, images
 app.use(express.static("public"));
 
+app.get("/api/high-demand-crops", async (req, res) => {
+  try {
+    const url =
+      "https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070" +
+      "?api-key=579b464db66ec23bdd0000014e7637c27261454244f98a4c22765395" +
+      "&format=json" +
+      "&limit=50";
+
+    const response = await fetch(url);
+    const data = await response.json();
+
+    res.json(data.records.slice(0, 6));
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch crop data" });
+  }
+});
+
 const requiredFruits = [
   "Mango",
   "Banana",
