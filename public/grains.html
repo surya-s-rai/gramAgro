@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grains</title>
+
+<link rel="stylesheet" href="style-grains.css">
+
+</head>
+<body>
+
+    <!-- Your Uploaded Circular Grain Image -->
+    <img src="Picture3.jpg.png" alt="Grain" width="100%" height="250">
+    <header>
+    <div class="logo-area">
+        <h1> ग्रामAgro</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Mandis</a>
+        <a href="#">Prices</a>
+        <a href="#">Contact</a>
+    </nav>
+</header>
+
+   
+
+<div class="container">
+
+    <!-- 12 Cards -->
+    <div class="card">
+    <img src="wheat.jpg">
+    <input type="text" value="Wheat" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+<div class="card">
+    <img src="Rice stock.jpg">
+    <input type="text" value="Rice" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+    <div class="card">
+        <img src="paddy.jpg">
+        <input type="text" value="Paddy" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+<div class="card">
+    <img src="soyabean.jpeg">
+    <input type="text" value="Soyabean" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+    
+<div class="card">
+    <img src="bajra.jpg">
+    <input type="text" value="Bajra" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+<div class="card">
+    <img src="millets.jpg">
+    <input type="text" value="Millets" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+<div class="card">
+    <img src="groundnut.jpeg">
+    <input type="text" value="Groundnut" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+<div class="card">
+    <img src="mustard.jpg">
+    <input type="text" value="Mustard" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+<div class="card">
+    <img src="maize.jpg">
+    <input type="text" value="Maize" readonly>
+    <input type="text" class="price" value="Loading..." readonly>
+</div>
+
+
+
+</div>
+
+<script>
+    async function fetchGrainPrices() {
+    
+        const apiUrl = "http://localhost:4000/api/grains";
+    
+        try {
+            const response = await fetch(apiUrl);
+            const grains = await response.json();
+    
+            document.querySelectorAll(".card").forEach(card => {
+    
+                const grainName = card.querySelector("input").value.toLowerCase();
+                const priceInput = card.querySelector(".price");
+    
+                if (!priceInput) return;
+    
+                const match = grains.find(v =>
+                    v.commodity.toLowerCase() === grainName
+                );
+    
+                if (match && match.price !== "Not Available") {
+                    priceInput.value = "₹ " + match.price + " per quintal";
+                } else {
+                    priceInput.value = "Not Available";
+                }
+    
+            });
+    
+        } catch (error) {
+            console.error("Frontend error:", error);
+            document.querySelectorAll(".price").forEach(input => {
+                input.value = "Error loading price";
+            });
+        }
+    }
+    
+    window.onload = fetchGrainPrices;
+    </script>
+    
+</body>
+</html>

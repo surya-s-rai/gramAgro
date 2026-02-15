@@ -56,6 +56,19 @@ const requiredVegetables = [
   "Pumpkin"
 ];
 
+const grainKeywords = {
+  Wheat: ["wheat"],
+  Rice: ["rice"],
+  Paddy: ["paddy"],
+  Soyabean: ["soyabean"],
+  Bajra: ["bajra", "pearl millet"],
+  Millets: ["millet"],
+  Groundnut: ["groundnut"],
+  Mustard: ["mustard"],
+  Maize: ["maize"]
+};
+
+
 
 app.get("/api/fruits", async (req, res) => {
   try {
@@ -141,6 +154,50 @@ app.get("/api/vegetables", async (req, res) => {
   }
 });
 
+app.get("/api/grains", async (req, res) => {
+  try {
+    const apiUrl = `https://api.data.gov.in/resource/${RESOURCE_ID}?api-key=${API_KEY}&format=json&limit=10000`;
+
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    const records = data.records || [];
+
+    const filteredGrains = Object.keys(grainKeywords).map(grain => {
+
+      const keywords = grainKeywords[grain];
+
+      const match = records.find(item =>
+        item.commodity &&
+        keywords.some(k =>
+          item.commodity.toLowerCase().includes(k)
+        )
+      );
+
+      if (match) {
+        return {
+          commodity: grain,
+          price: match.modal_price,
+          state: match.state,
+          market: match.market
+        };
+      } else {
+        return {
+          commodity: grain,
+          price: "Not Available"
+        };
+      }
+    });
+
+    res.json(filteredGrains);
+
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).json({ error: "Failed to fetch grains data" });
+  }
+});
+
+/* -------------------- SERVER START -------------------- */
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
