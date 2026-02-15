@@ -19,8 +19,7 @@
     <nav>
         <a href="#">Home</a>
         <a href="#high-demand">Demand Insight</a>
-        <a href="#">Mandis</a>
-        <a href="#">Contact</a>
+        <a href="#feedback">Feedback</a>
     </nav>
 </header>
 
@@ -69,6 +68,30 @@
   <h2>High Demanding Crops📈</h2>
   <div id="crop-container"></div>
 </section>
+
+<!-- Feedback Section -->
+<section class="feedback-section" id="feedback">
+  <form class="feedback-form"
+        action="https://formsubmit.co/ansh38300@gmail.com"
+        method="POST">
+
+    <h2>Feedback</h2>
+
+    <input type="text" name="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <textarea name="feedback" rows="5"
+              placeholder="Your Feedback" required></textarea>
+
+    <!-- hidden settings -->
+    <input type="hidden" name="_subject" value="New Feedback from Website">
+    <input type="hidden" name="_captcha" value="false">
+
+    <button type="submit">Send Feedback</button>
+  </form>
+</section>
+
 
 
     <!-- Info Section -->
