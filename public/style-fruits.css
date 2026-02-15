@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Circular Grain Image */
+.grain-icon {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 15px auto;
+    position: relative;  /* Perfect horizontal center */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body with light background image + gradient */
+body {
+    background: linear-gradient(
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0.9)
+    ),
+    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Header */
+header {
+height: 80px;                 /* adjust if you want bigger */
+background-color: #2e7d32;
+color: white;
+padding: 0 40px;              /* vertical padding removed */
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body with light background image + gradient */
+body {
+    background: linear-gradient(
+        rgba(255,255,255,0.9),
+        rgba(255,255,255,0.9)
+    ),
+    url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Header */
+header {
+height: 80px;                 /* adjust if you want bigger */
+background-color: #2e7d32;
+color: white;
+padding: 0 40px;              /* vertical padding removed */
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+/* Logo Area */
+.logo-area {
+height: 100%;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.logo-area img {
+height: 90%;       /* THIS is the key line */
+width: 50%;        /* keep aspect ratio */
+object-fit: contain;
+}
+
+
+header h1 {
+    font-size: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+nav a {
+position: relative;
+padding-bottom: 5px;
+font-size: 16px;    /* fixed font size */
+line-height: 1;     /* prevents vertical stretching */
+}
+
+
+nav a:hover {
+color: #c8e6c9;
+
+}
+
+nav a::after {
+content: "";
+position: absolute;
+width: 0%;
+height: 2px;
+background-color: #c8e6c9;
+left: 0;
+bottom: 0;
+transition: width 0.3s;
+
+}
+
+nav a:hover::after {
+width: 100%;
+
+}
+.info div {
+transition: all 0.3s ease;
+}
+
+/* Logo Area */
+.logo-area {
+height: 100%;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.logo-area img {
+height: 90%;       /* THIS is the key line */
+width: 50%;        /* keep aspect ratio */
+object-fit: contain;
+}
+
+header h1 {
+    font-size: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+}
+nav a {
+position: relative;
+padding-bottom: 5px;
+font-size: 16px;    /* fixed font size */
+line-height: 1;     /* prevents vertical stretching */
+}
+
+
+nav a:hover {
+color: #c8e6c9;
+
+}
+
+nav a::after {
+content: "";
+position: absolute;
+width: 0%;
+height: 2px;
+background-color: #c8e6c9;
+left: 0;
+bottom: 0;
+transition: width 0.3s;
+
+}
+
+nav a:hover::after {
+width: 100%;
+
+}
+.info div {
+transition: all 0.3s ease;
+}
+
+
+/* Grid Container */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+/* Cards */
+.card {
+    background:rgb(254, 208, 134);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card input {
+    width: 90%;
+    padding: 8px;
+    margin-top: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}

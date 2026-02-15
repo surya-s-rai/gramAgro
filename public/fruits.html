@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuits</title>
+
+<link rel="stylesheet" href="style-fruits.css">
+
+</head>
+<body>
+
+    <!-- Your Uploaded Circular Grain Image -->
+    <img src="Picture1.png" alt="Grain" width="100%" height="250">
+<header>
+        <div class="logo-area">
+            <h1> ग्रामAgro</h1>
+        </div>
+        <nav>
+            <a href="index.html">Home</a >
+            <a href="#">Mandis</a>
+            <a href="#">Prices</a>
+            <a href="#">Contact</a>
+        </nav>
+</header>
+
+   
+
+<div class="container">
+
+    <!-- 12 Cards -->
+    <div class="card" data-fruit="mango">
+        <img src="mango.jpg">
+        <input type="text" value="Mango" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="banana">
+        <img src="banana.jpg">
+        <input type="text" value="banana" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="apple">
+        <img src="apple.jpg">
+        <input type="text" value="Apple" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="orange">
+        <img src="orange.jpg">
+        <input type="text" value="Orange" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="papaya">
+        <img src="papaya.jpg">
+        <input type="text" value="Papaya" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="water melon">
+        <img src="watermelon.jpg">
+        <input type="text" value="Watermelon" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="Grapes">
+        <img src="grapes.jpg">
+        <input type="text" value="Grapes" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="guava">
+        <img src="guava.jpg">
+        <input type="text" value="Guava" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="pineapple">
+        <img src="pineapple.jpg">
+        <input type="text" value="Pineapple" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+    <div class="card" data-fruit="pomegranate">
+        <img src="pomegranate.jpg">
+        <input type="text" value="Pomegranate" readonly>
+        <input type="text" class="price" value="Loading..." readonly>
+    </div>
+
+</div>
+
+<script>
+    async function fetchFruitPrices() {
+    
+        const apiUrl = "http://localhost:4000/api/fruits";
+    
+        try {
+            const response = await fetch(apiUrl);
+            const fruits = await response.json();
+    
+            document.querySelectorAll(".card").forEach(card => {
+    
+                const fruitName = card.getAttribute("data-fruit").toLowerCase();
+                const priceInput = card.querySelector(".price");
+    
+                const match = fruits.find(f =>
+                    f.commodity.toLowerCase() === fruitName
+                );
+    
+                if (match && match.price !== "Not Available") {
+                    priceInput.value = "₹ " + match.price + " per quintal";
+                } else {
+                    priceInput.value = "Not Available";
+                }
+    
+            });
+    
+        } catch (error) {
+            console.error("Frontend error:", error);
+            document.querySelectorAll(".price").forEach(input => {
+                input.value = "Error loading price";
+            });
+        }
+    }
+    
+    window.onload = fetchFruitPrices;
+    </script>
+    
+</body>
+</html>
